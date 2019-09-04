@@ -1,3 +1,5 @@
+from time import perf_counter
+
 from Hotel import Hotel
 import Selection_sort
 
@@ -25,10 +27,16 @@ def main():
     print("inter_continental - ", str(inter_continental))
 
     print("Selection sort by visitors:")
-    Selection_sort.selection_sort(visitors)
+    start_point_visitors = perf_counter()
+    Selection_sort.sel_sort(visitors)
+    end_point_visitors = perf_counter()
+    print("\tTime Complexity: " + str(end_point_visitors - start_point_visitors))
 
     print("Selection sort by rooms:")
-    Selection_sort.selection_sort(rooms)
+    start_point_rooms = perf_counter()
+    Selection_sort.sel_sort(rooms)
+    end_point_rooms = perf_counter()
+    print("\tTime Complexity: " + str(end_point_rooms - start_point_rooms))
 
     print("Merge sort by visitors:")
     Selection_sort.mergeSort(visitors)
