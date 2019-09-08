@@ -1,39 +1,3 @@
-# def selection_sort(hotel):
-#     start_time = time.time()
-#     swap = 0
-#     comparison = 0
-# 
-#     # Traverse through all array elements
-#     for i in range(len(hotel)):
-#         # print(hotel)
-#         # print("i = " + str(i))
-#
-#         # Find the minimum element in remaining
-#         # unsorted array
-#         min_idx = i
-#         for j in range(i + 1, len(hotel)):
-#             # print("j = " + str(j))
-#             comparison += 1
-#             if hotel[min_idx] > hotel[j]:
-#                 min_idx = j
-#
-#         swap += 1
-#         # Swap the found minimum element with
-#         # the first element
-#         # hotel[i], hotel[min_idx] = hotel[min_idx], hotel[i]
-#
-#         temp = hotel[i]
-#         hotel[i] = hotel[min_idx]
-#         hotel[min_idx] = temp
-#
-#     for i in range(len(hotel)):
-#         print("\t" + "%d" % hotel[i])
-#     print("--- %s seconds ---" % (time.time() - start_time))
-#     print("swap = " + str(swap))
-#     print("comparison = " + str(comparison))
-#     print()
-
-
 def sel_sort(hotel):
     swap = 0
     comparison = 0
@@ -55,39 +19,34 @@ def sel_sort(hotel):
     print()
 
 
-# Python program for implementation of MergeSort
-def mergeSort(hotel):
+def merge_sort(hotel):
     if len(hotel) > 1:
-        mid = len(hotel) // 2  # Finding the mid of the array
-        L = hotel[:mid]  # Dividing the array elements
-        R = hotel[mid:]  # into 2 halves
+        middle_point = len(hotel) // 2
 
-        mergeSort(L)  # Sorting the first half
-        mergeSort(R)  # Sorting the second half
+        left_side = hotel[:middle_point]
+        right_side = hotel[middle_point + 1:]
 
-        i = j = k = 0
+        merge_sort(left_side)
+        merge_sort(right_side)
 
-        # Copy data to temp arrays L[] and R[]
-        # while i > len(L) and j > len(R): - changing order of sorting
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                hotel[k] = L[i]
+        i = 0
+        j = 0
+        k = 0
+        # merge_comparison = 0
+        # merge_swap = 0
+
+        while i < len(left_side) and j < len(right_side):
+            # merge_comparison += 1
+            if left_side[i] < right_side[j]:
+                # merge_swap += 1
+                hotel[k] = left_side[i]
                 i += 1
             else:
-                hotel[k] = R[j]
-                j += 1
+                # merge_swap += 1
+                hotel[k] = right_side[i]
+                j = +1
             k += 1
-
-        # Checking if any element was left
-        while i < len(L):
-            hotel[k] = L[i]
-            i += 1
-            k += 1
-
-        while j < len(R):
-            hotel[k] = R[j]
-            j += 1
-            k += 1
+    # print(merge_comparison, merge_swap)
 
 
 def print_list(hotel):
