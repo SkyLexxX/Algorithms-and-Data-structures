@@ -1,0 +1,4 @@
+Mariott,1000,50000
+Hilton,900,15000
+Kempinski,1560,20000
+InterContinental,1100,24000

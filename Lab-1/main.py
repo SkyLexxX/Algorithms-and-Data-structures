@@ -1,14 +1,16 @@
 from time import perf_counter
 
-from hotel import Hotel
+import read_from_file
 import sort
 
 
 def main():
-    mariott = Hotel("Mariott", 1000, 50000)
-    hilton = Hotel("Hilton", 900, 15000)
-    kempinski = Hotel("Kempinski", 1560, 20000)
-    inter_continental = Hotel("InterContinental", 1100, 24000)
+    list_of_hotels = read_from_file.read_from_file("data.txt")
+
+    mariott = list_of_hotels[0]
+    hilton = list_of_hotels[1]
+    kempinski = list_of_hotels[2]
+    inter_continental = list_of_hotels[3]
 
     visitors = [mariott.amount_of_visitors, hilton.amount_of_visitors, kempinski.amount_of_visitors,
                 inter_continental.amount_of_visitors]
@@ -20,18 +22,6 @@ def main():
     print(sort.sel_sort(visitors))
     end_point_sel_visitors = perf_counter()
     print("\tTime Complexity: " + str(end_point_sel_visitors - start_point_sel_visitors))
-
-    print("Selection sort by rooms:")
-    start_point_sel_rooms = perf_counter()
-    print(sort.sel_sort(rooms))
-    end_point_sel_rooms = perf_counter()
-    print("\tTime Complexity: " + str(end_point_sel_rooms - start_point_sel_rooms))
-
-    print("Merge sort by visitors:")
-    start_point_merge_visitors = perf_counter()
-    print(sort.merge(visitors))
-    end_point_merge_visitors = perf_counter()
-    print("\tTime Complexity: " + str(end_point_merge_visitors - start_point_merge_visitors))
 
     print("Merge sort by rooms:")
     start_point_merge_rooms = perf_counter()

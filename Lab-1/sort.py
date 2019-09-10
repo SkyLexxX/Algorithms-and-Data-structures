@@ -30,8 +30,7 @@ def merge(hotel):
 
 
 def merge_sort(left_side, right_side):
-    merge_comparison = 0
-    merge_swap = 0
+    merge_comparison, merge_swap = 0, 0
     left_index, right_index = 0, 0
     result = []
     while left_index < len(left_side) and right_index < len(right_side):
