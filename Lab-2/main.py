@@ -15,21 +15,21 @@ class TestMergingOverlappingIntervals(unittest.TestCase):
 
 
 def calendar(intervals):
-    si = sorted(intervals, key=lambda tup: tup[0])
-    merged = []
+    sorted_intervals = sorted(intervals, key=lambda tup: tup[0])
+    merged_intervals = []
 
-    for tup in si:
-        if not merged:
-            merged.append(tup)
+    for pair in sorted_intervals:
+        if not merged_intervals:
+            merged_intervals.append(pair)
         else:
-            b = merged.pop()
-            if b[1] >= tup[0]:
-                new_tup = (b[0], max(b[1], tup[1]))
-                merged.append(new_tup)
+            last_interval = merged_intervals.pop()
+            if last_interval[1] >= pair[0]:
+                new_tup = (last_interval[0], max(last_interval[1], pair[1]))
+                merged_intervals.append(new_tup)
             else:
-                merged.append(b)
-                merged.append(tup)
-    return merged
+                merged_intervals.append(last_interval)
+                merged_intervals.append(pair)
+    return merged_intervals
 
 
 def main():
