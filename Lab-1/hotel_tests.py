@@ -31,5 +31,3 @@ class TestMergingOverlappingIntervals(unittest.TestCase):
              39, 40, 41, 42, 43, 45, 46, 48, 51, 53, 54, 55, 56, 58, 59, 62, 65, 66, 67, 68, 69, 72, 73, 74, 75, 76, 77,
              78, 79, 80, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 95, 96, 97, 98], 37, 37),
                          'An error occurred while processing your request with third set by merge sort')
-
-

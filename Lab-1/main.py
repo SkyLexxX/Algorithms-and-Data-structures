@@ -1,4 +1,4 @@
-from time import perf_counter
+import time
 
 import read_from_file
 import sort
@@ -6,28 +6,23 @@ import sort
 
 def main():
     list_of_hotels = read_from_file.read_from_file("data.txt")
+    visitors = []
+    rooms = []
 
-    mariott = list_of_hotels[0]
-    hilton = list_of_hotels[1]
-    kempinski = list_of_hotels[2]
-    inter_continental = list_of_hotels[3]
-
-    visitors = [mariott.amount_of_visitors, hilton.amount_of_visitors, kempinski.amount_of_visitors,
-                inter_continental.amount_of_visitors]
-    rooms = [mariott.amount_of_rooms, hilton.amount_of_rooms, kempinski.amount_of_rooms,
-             inter_continental.amount_of_rooms]
+    for i in list_of_hotels:
+        rooms.append(i.amount_of_rooms)
+        visitors.append(i.amount_of_visitors)
+    print(visitors)
 
     print("Selection sort by visitors:")
-    start_point_sel_visitors = perf_counter()
+    start_sel = time.time()
     print(sort.sel_sort(visitors))
-    end_point_sel_visitors = perf_counter()
-    print("\tTime Complexity: " + str(end_point_sel_visitors - start_point_sel_visitors))
+    print("%f s" % (time.time() - start_sel))
 
     print("Merge sort by rooms:")
-    start_point_merge_rooms = perf_counter()
-    print(sort.merge(rooms))
-    end_point_merge_rooms = perf_counter()
-    print("\tTime Complexity: " + str(end_point_merge_rooms - start_point_merge_rooms))
+    start_sel1 = time.time()
+    print(sort.merge_sort(rooms))
+    print(time.time() - start_sel1)
 
 
 if __name__ == '__main__':
