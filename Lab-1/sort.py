@@ -14,34 +14,35 @@ def sel_sort(hotel):
     return hotel, swap, comparison
 
 
+counter = 0
+
+
+def compare(left, right):
+    global counter
+    counter = counter + 1
+    return left <= right
+
+
 def merge(left_side, right_side):
     left_index, right_index = 0, 0
     result = []
-    # iterate through both left and right sublist
     while left_index < len(left_side) and right_index < len(right_side):
-        # if left value is lower than right then append it to the result
-        if left_side[left_index] <= right_side[right_index]:
+        if compare(left_side[left_index], right_side[right_index]):
             result.append(left_side[left_index])
             left_index += 1
         else:
-            # if right value is lower than left then append it to the result
             result.append(right_side[right_index])
             right_index += 1
-    # concatenate the rest of the left and right sublists
     result += left_side[left_index:]
     result += right_side[right_index:]
-    # return the result
     return result
 
 
 def merge_sort(hotel):
-    # if list contains only 1 element return it
     if len(hotel) <= 1:
         return hotel
     else:
-        # split the lists into two sublists and recursively split sublists
         middle_point = int(len(hotel) / 2)
-        left_sublist = merge_sort(hotel[:middle_point])
-        right_sublist = merge_sort(hotel[middle_point:])
-        # return the merged list using the merge_list function above
-        return merge(left_sublist, right_sublist)
+        left_side = merge_sort(hotel[:middle_point])
+        right_side = merge_sort(hotel[middle_point:])
+        return merge(left_side, right_side)

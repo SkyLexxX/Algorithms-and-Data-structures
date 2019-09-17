@@ -13,6 +13,7 @@ def main():
         rooms.append(i.amount_of_rooms)
         visitors.append(i.amount_of_visitors)
     print(visitors)
+    print(rooms)
 
     print("Selection sort by visitors:")
     start_sel = time.time()
@@ -23,6 +24,7 @@ def main():
     start_sel1 = time.time()
     print(sort.merge_sort(rooms))
     print(time.time() - start_sel1)
+    print(sort.counter)
 
 
 if __name__ == '__main__':
