@@ -1,26 +1,24 @@
-arr = [[1, 2, 3], [4, 5, 6], [2, 3, 4, 5]]
-# arr = [[1, 2, 3], [4, 5, 6], [2, 3, 4, 5], [7], [8], [9], [10], [11], [12]]
-# arr = [[1, 2, 3], [4, 5, 6], [2, 3, 4, 5, 7], [1]]
-# arr = [[1], [2]]
+from itertools import permutations
+
+
+def translate_string_to_list(beer, list_of_likes):
+    translated_list = []
+    for index in range(0, int(beer)):
+        translated_list.append(list())
+
+    for i in range(0, len(list_of_likes)):
+        for j in range(0, int(beer)):
+            if list_of_likes[i][j] == "Y":
+                translated_list[j].insert(j, i + 1)
+    return translated_list
 
 
 def combinations(iterable, r):
     pool = tuple(iterable)
     n = len(pool)
-    if r > n:
-        return
-    indices = list(range(r))
-    yield tuple(pool[i] for i in indices)
-    while True:
-        for i in reversed(range(r)):
-            if indices[i] != i + n - r:
-                break
-        else:
-            return
-        indices[i] += 1
-        for j in range(i + 1, r):
-            indices[j] = indices[j - 1] + 1
-        yield tuple(pool[i] for i in indices)
+    for indices in permutations(range(n), r):
+        if sorted(indices) == list(indices):
+            yield tuple(pool[i] for i in indices)
 
 
 def merge(array):
@@ -61,8 +59,17 @@ def solution(combination, number_of_employees):
             return i
 
 
-print(my_combo(arr))
-last = my_combo(arr)
-print("\nSolution\n")
-res = solution(last, set(last[-1]))
-print(beer_identifier(res, arr, set(last[-1])), res)
+def main():
+    employee, beer = input("Enter a two value: ").split()
+    list_of_likes = list(map(str, input("Enter a string of beer likes: ").split()))
+    print(list_of_likes)
+
+    input_list = translate_string_to_list(beer, list_of_likes)
+    merged_combination_list = my_combo(input_list)
+    print("\nSolution\n")
+    result_search = solution(merged_combination_list, set(merged_combination_list[-1]))
+    print(beer_identifier(result_search, input_list, set(merged_combination_list[-1])), result_search)
+
+
+if __name__ == '__main__':
+    main()
